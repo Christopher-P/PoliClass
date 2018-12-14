@@ -39,12 +39,22 @@ max_y = max(labels_y)
 norm_x = [(x - min_x) / (max_x - min_x) for x in labels_x]
 norm_y = [(x - min_y) / (max_y - min_y) for x in labels_y]
 
-print(norm_x)
-print(norm_y)
+#print(norm_x)
+#print(norm_y)
 
 
-with open('norm.csv', 'w', newline='') as csvfile:
+with open('test.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile)
-    for ind, val in enumerate(tweets):
+    for ind, val in enumerate(tweets[0:50]):
+        spamwriter.writerow([val, norm_x[ind], norm_y[ind]])
+
+with open('dev.csv', 'w', newline='') as csvfile:
+    spamwriter = csv.writer(csvfile)
+    for ind, val in enumerate(tweets[50:100]):
+        spamwriter.writerow([val, norm_x[ind], norm_y[ind]])
+
+with open('train.csv', 'w', newline='') as csvfile:
+    spamwriter = csv.writer(csvfile)
+    for ind, val in enumerate(tweets[100:]):
         spamwriter.writerow([val, norm_x[ind], norm_y[ind]])
 
