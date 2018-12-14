@@ -1,12 +1,6 @@
 import csv
 import random
 
-# So we can random our data but keep it consistent for breaks ;)
-random.seed(10)
-
-
-# Used for taking breaks between classifying sessions
-
 tweets = []
 labels_x = []
 labels_y = []
@@ -16,6 +10,12 @@ with open('../data_collector/classified.csv', newline='') as csvfile:
         tweets.append(row[0])
         labels_x.append(int(row[1]))
         labels_y.append(int(row[2]))
+
+# NEW in reduced!
+# Remove duplicate words
+for ind,val in enumerate(tweets):
+    tweets[ind] = ' '.join(set(val.split(' ')))
+
 
 # Get average without zeros
 tmp_X = [x for x in labels_x if x != 0]
@@ -39,26 +39,22 @@ max_y = max(labels_y)
 norm_x = [(x - min_x) / (max_x - min_x) for x in labels_x]
 norm_y = [(x - min_y) / (max_y - min_y) for x in labels_y]
 
-#print(norm_x)
-#print(norm_y)
-
-
-with open('../data/polisent_raw/test.csv', 'w', newline='') as csvfile:
+with open('../data/polisent_red/test.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile)
     for ind, val in enumerate(tweets[0:50]):
         spamwriter.writerow([val, norm_x[ind], norm_y[ind]])
 
-with open('../data/polisent_raw/dev.csv', 'w', newline='') as csvfile:
+with open('../data/polisent_red/dev.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile)
     for ind, val in enumerate(tweets[50:100]):
         spamwriter.writerow([val, norm_x[ind], norm_y[ind]])
 
-with open('../data/polisent_raw/train.csv', 'w', newline='') as csvfile:
+with open('../data/polisent_red/train.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile)
     for ind, val in enumerate(tweets[100:]):
         spamwriter.writerow([val, norm_x[ind], norm_y[ind]])
 
-with open('../data/polisent_raw/full.csv', 'w', newline='') as csvfile:
+with open('../data/polisent_red/full.csv', 'w', newline='') as csvfile:
     spamwriter = csv.writer(csvfile)
     for ind, val in enumerate(tweets):
         spamwriter.writerow([val, norm_x[ind], norm_y[ind]])

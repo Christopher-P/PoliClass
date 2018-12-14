@@ -9,7 +9,7 @@ random.seed(10)
 
 
 # Used for taking breaks between classifying sessions
-current = 575
+current = 1328
 tweets = []
 with open('raw.csv', newline='') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=' ', quotechar='|')
