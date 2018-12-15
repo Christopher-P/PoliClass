@@ -1,2 +1,31 @@
-TODO:
-Make Readme
+** Gather Data **
+To gather users tweet data, rename the '@'s from the names list in gather data
+Please be diligent about the ethical dilemmas of over-scrapping private individuals!
+
+Require twitter api access!!
+
+** Classification **
+To classify data please utilize the classification script inside of gather data directory.
+This will pull up a gui with a the political spectrum chart. The tweet data will be in the 
+console window. Click on the chart to log the classification of that tweet. If the tweet
+has no polticial sentiment press "SPACE" to mark it as (0,0) which will get set to 1, 1 
+when normalization is run.
+
+If the tweet contains mostly non-enlgish words or unknown symbols or does not make sense,
+please press 'ESC' as this will move to the next tweet without logging it. 
+
+To pause classification for later set the last value to whatever your tweet numbered display
+console is.
+
+** Data Generation **
+Our data extension methods can be found in data generation.
+Run normalize before anything else as the other scripts are dependent on the normalized data.
+
+** Classifiers **
+We utilized standard sklearn classifiers and bag of words for the results found in our paper.
+Please submit generalizable classifiers here!
+
+The data from the included classifiers were used in our final report. (plotted in libreoffice)
+
+** Graph **
+To generate the python plots, runn the python scripts inside of the graph directory.
